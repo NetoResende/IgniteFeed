@@ -1,10 +1,10 @@
-import { Poste } from "./Poste.jsx"
+import { Poste } from "./components/Poste.jsx"
 import { Header } from "./components/Header.jsx"
+import { SideBar } from "./components/SideBar.jsx"
 
 
 import style from './App.module.css'
 import './global.css'
-import { SideBar } from "./components/SideBar.jsx"
 
 
 export function App() {
