@@ -1,39 +1,42 @@
+
+
 import { Avatar } from './Avatar'
 import { Coment } from './Coment'
 import style from './Poste.module.css'
 
-export function Poste(){
+export function Poste({ author, content}){
+
+    const { avatarUrl, nome, cargo} = author;
+
+    
   return(
    
      <article className={style.poste}>
           <header>
               <div className={style.author}>
 
-                  <Avatar
-                    hasBorder
-                     src="https://images.unsplash.com/photo-1718465388901-9c628510c01e?q=50&w=500&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                  />
+                  <Avatar src={avatarUrl} />
 
                   <div className={style.authorInfo}>
-                      <strong>Neto Resende</strong>
-                      <span>Web Developer</span>
+                      <strong>{nome}</strong>
+                      <span>{cargo}</span>
                   </div>
 
               </div>
 
-              <time title='19 de junho de 2024 as 16:05' dateTime="19-06-2024 as 16:05">Publicado há 1h</time>
+              <time title='21 de junho 2024 ás 20:19' dateTime="19-06-2024 as 16:05">
+                Publcado á 1h
+                </time>
           </header>
 
           <div className={style.content}>
-              <p> Fala galera! 🤩</p>
-              <p> Acabei de aprender como utilizar </p>
-              <p> ReactJS e agora estou ansioso para mostrar meu novo trabalho em react com type script !</p>
-              <p> <a href="#">Jane.design/doctorcare</a> </p>
-              <p> 
-                <a href="#">#novoprojeto </a>{' '}
-                <a href="#">#nlw </a>{' '}
-                <a href="#">#rocketseat</a>
-              </p>
+            {content.map((line) => {
+                if(line.type === 'paragrafo'){
+                    return <p key={line.index}>{line.content}</p>
+                }else if ( line.type === 'link'){
+                    return <p key={line.index}><a href="#">{line.content}</a></p>
+                }
+            })}
           </div>
 
         <form className={style.comentForm}>
