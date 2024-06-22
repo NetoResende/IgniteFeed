@@ -1,5 +1,6 @@
 
 
+import { useState } from 'react';
 import { Avatar } from './Avatar'
 import { Coment } from './Coment'
 import style from './Poste.module.css'
@@ -8,7 +9,16 @@ export function Poste({ author, content}){
 
     const { avatarUrl, nome, cargo} = author;
 
-    
+    const [ coment, setComent ] = useState([1])
+
+
+
+
+    function handlerComent(event){
+        event.preventDefault()
+
+        setComent([...coment, coment.length + 1])
+    }
   return(
    
      <article className={style.poste}>
@@ -39,7 +49,7 @@ export function Poste({ author, content}){
             })}
           </div>
 
-        <form className={style.comentForm}>
+        <form onSubmit={handlerComent} className={style.comentForm}>
             <strong>Deixe seu cometário</strong>
 
             <textarea 
@@ -52,9 +62,9 @@ export function Poste({ author, content}){
         </form>
 
         <div className={style.comentList}>
-          <Coment/>
-          <Coment/>
-          <Coment/>
+         { coment.map(coment => {
+            return <Coment key={coment.index}/>
+         })}
         </div>
         
      </article>
