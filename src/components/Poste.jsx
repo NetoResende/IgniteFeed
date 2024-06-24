@@ -1,15 +1,24 @@
 
-
+import { format, formatDistanceToNow } from 'date-fns';
+import { ptBR } from 'date-fns/locale/pt-BR';
 import { useState } from 'react';
 import { Avatar } from './Avatar'
 import { Coment } from './Coment'
 import style from './Poste.module.css'
 
-export function Poste({ author, content}){
+export function Poste({ author, content, publishedAt}){
 
     const { avatarUrl, nome, cargo} = author;
 
     const [ coment, setComent ] = useState([1])
+
+    const publishedAtFormatted = format(publishedAt, "d 'de' LLLL 'ás' HH:mm'h'", {
+        locale: ptBR,
+    });
+    const publishedAtDateFormattedToNow = formatDistanceToNow(publishedAt, {
+        locale: ptBR,
+        addSuffix: true,
+    })
 
 
 
@@ -34,8 +43,8 @@ export function Poste({ author, content}){
 
               </div>
 
-              <time title='21 de junho 2024 ás 20:19' dateTime="19-06-2024 as 16:05">
-                Publcado á 1h
+              <time title={publishedAtFormatted} dateTime={publishedAt.toISOString()}>
+                   {publishedAtDateFormattedToNow}
                 </time>
           </header>
 

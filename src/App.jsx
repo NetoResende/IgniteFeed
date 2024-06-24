@@ -21,7 +21,7 @@ const postar = [
                     { type: 'link', content: 'Jane.design/doctorcare'},
                     { type: 'link', content: 'Marcely.design/doctorcare'},
                 ],
-   publishedAt: new Date('2024-20-06 15:48:00'),
+   publishedAt: new Date('06-06-2024 15:48:00'),
    },
 ];
 
