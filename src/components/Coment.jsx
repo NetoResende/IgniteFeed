@@ -3,7 +3,7 @@ import { ThumbsUp, Trash } from 'phosphor-react'
 import style from './Coment.module.css'
 import { Avatar } from './Avatar'
 
-export function Coment(){
+export function Coment({cometar}){
   return (
    <div className={style.coment}>
         
@@ -25,7 +25,7 @@ export function Coment(){
                       </button>
                   </header>
 
-                  <p>Muito bom Devon, Parabéns!! </p>
+                  <p>{cometar}</p>
               </div>
 
               <footer>

@@ -4,13 +4,17 @@ import { ptBR } from 'date-fns/locale/pt-BR';
 import { useState } from 'react';
 import { Avatar } from './Avatar'
 import { Coment } from './Coment'
+
 import style from './Poste.module.css'
 
+
 export function Poste({ author, content, publishedAt}){
-
     const { avatarUrl, nome, cargo} = author;
+    const [ coment, setComent ] = useState([
+        "OI Meu Primeiro cometário"
+    ]);
+    const [ newComents, setNewComents ] = useState('')
 
-    const [ coment, setComent ] = useState([1])
 
     const publishedAtFormatted = format(publishedAt, "d 'de' LLLL 'ás' HH:mm'h'", {
         locale: ptBR,
@@ -19,17 +23,18 @@ export function Poste({ author, content, publishedAt}){
         locale: ptBR,
         addSuffix: true,
     })
-
-
-
-
     function handlerComent(event){
         event.preventDefault()
-
-        setComent([...coment, coment.length + 1])
+        const newComents = event.target.comentar.value
+        setComent([...coment, newComents])
+        setNewComents("")
     }
+    function handlerNewComents(event){
+        setNewComents(event.target.value)
+    }
+
+
   return(
-   
      <article className={style.poste}>
           <header>
               <div className={style.author}>
@@ -61,18 +66,19 @@ export function Poste({ author, content, publishedAt}){
         <form onSubmit={handlerComent} className={style.comentForm}>
             <strong>Deixe seu cometário</strong>
 
-            <textarea 
-               placeholder='Deixe um cometário'
-            />
-
-           <footer>
-               <button type='submit'> Publicar</button>
+                    <textarea 
+                        name='comentar'
+                        value={newComents}
+                        onChange={handlerNewComents}
+                        placeholder='Deixe um cometário' />
+             <footer>
+                <button type='submit'> Publicar</button>
            </footer>
         </form>
 
         <div className={style.comentList}>
          { coment.map(coment => {
-            return <Coment key={coment.index}/>
+            return <Coment key={coment} cometar={coment}/>
          })}
         </div>
         
