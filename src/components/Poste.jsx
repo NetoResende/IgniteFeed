@@ -31,6 +31,13 @@ export function Poste({ author, content, publishedAt}){
         setNewComents(event.target.value)
     }
 
+    function deletarComents(deletList){
+        const deletarComentario = coment.filter(coment => {
+            return coment !== deletList;
+        });
+        setComent(deletarComentario);
+    }
+
 
   return(
      <article className={style.poste}>
@@ -76,7 +83,12 @@ export function Poste({ author, content, publishedAt}){
 
         <div className={style.comentList}>
          { coment.map(coment => {
-            return <Coment key={coment} cometar={coment}/>
+            return (
+                    <Coment
+                         key={coment} 
+                         cometar={coment} 
+                         ondeletarComents={deletarComents}
+                         />)
          })}
         </div>
         
