@@ -10,9 +10,7 @@ import style from './Poste.module.css'
 
 export function Poste({ author, content, publishedAt}){
     const { avatarUrl, nome, cargo} = author;
-    const [ coment, setComent ] = useState([
-        "OI Meu Primeiro cometário"
-    ]);
+    const [ coment, setComent ] = useState([]);
     const [ newComents, setNewComents ] = useState('')
 
 
@@ -70,7 +68,7 @@ export function Poste({ author, content, publishedAt}){
                         name='comentar'
                         value={newComents}
                         onChange={handlerNewComents}
-                        placeholder='Deixe um cometário' />
+                        placeholder='comentar....' />
              <footer>
                 <button type='submit'> Publicar</button>
            </footer>
