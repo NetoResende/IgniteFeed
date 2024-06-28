@@ -2,9 +2,14 @@
 import { ThumbsUp, Trash } from 'phosphor-react'
 import style from './Coment.module.css'
 import { Avatar } from './Avatar'
+import { useState } from 'react';
 
 export function Coment({cometar, ondeletarComents}){
 
+  const [ count, setCount ] = useState(0)
+  function handlerCount(){
+    setCount(count + 1)
+  }
   function handlerDeletar(){
     ondeletarComents(cometar);
   }
@@ -34,9 +39,9 @@ export function Coment({cometar, ondeletarComents}){
               </div>
 
               <footer>
-                <button>
+                <button onClick={handlerCount}>
                   <ThumbsUp/>
-                  Aplaudir <span>20</span>
+                  Aplaudir<span>{count}</span>
                 </button>
               </footer>
           </div>

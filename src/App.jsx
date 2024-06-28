@@ -7,48 +7,58 @@ import './global.css'
 
 
 const postar = [
-        {
-          id: 1,
-          author: {
+         {
+            id: 1,
+            author: {
                     avatarUrl: "https://github.com/raimundoneto01.png" ,
                     nome: "Neto Resende",
                     cargo: "Web Developer"
                 },
-          content: [
+            content: [
                     { type: 'paragrafo', content: "Fala galera! "},
                     { type: 'paragrafo', content: 'Acabei de aprender como utilizar'},
                     { type:'paragrafo', content: "ReactJS e agora estou ansioso para mostrar meu novo trabalho em react com type script"},
                     { type: 'link', content: 'Jane.design/doctorcare'},
                     { type: 'link', content: 'Marcely.design/doctorcare'},
                 ],
-   publishedAt: new Date('06-06-2024 15:48:00'),
-   },
+            publishedAt: new Date('06-06-2024 15:48:00'),
+         },
+        {
+          id: 2,
+          author: {
+                    avatarUrl: "https://github.com/raimundogomes.png" ,
+                    nome: "João Victor Resende Ribeiro",
+                    cargo: "Desenvolvedor Full Stack"
+                },
+          content: [
+                    { type: 'paragrafo', content: "Fala pessoas! "},
+                    { type: 'paragrafo', content: 'Acabei de aprender como utilizar o git hub'},
+                    { type:'paragrafo', content: "ReactJS novo trabalho em react com type script"},
+                    { type: 'link', content: '##Jjkar.design/doctorcare'},
+                    { type: 'link', content: '@Mayki.design/doctorcare'},
+                ],
+   publishedAt: new Date('01-06-2023 15:48:00'),
+   }
 ];
 
 
 export function App() {
-  
   return (
     <div>
        <Header/>
         <div className={style.wrapper}>
             <SideBar/>
             <main>
-              { postar.map((post)=>{
+              { postar.map(post=>{
                 return (                 
                     <div key={post.id}>
-                         <Poste 
-                          author={post.author}
-                          content={post.content}
-                          publishedAt={post.publishedAt}
-                       />
-                         <Poste 
-                          author={post.author}
-                          content={post.content}
-                          publishedAt={post.publishedAt}
-                       />
+                           <Poste 
+                              author={post.author}
+                              content={post.content}
+                              publishedAt={post.publishedAt}
+                          />          
                     </div>
-                )
+                  )
               })}
             </main>
         </div>

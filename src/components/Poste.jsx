@@ -12,7 +12,7 @@ export function Poste({ author, content, publishedAt}){
     const { avatarUrl, nome, cargo} = author;
     const [ coment, setComent ] = useState([]);
     const [ newComents, setNewComents ] = useState('')
-
+    console.log(newComents);
 
     const publishedAtFormatted = format(publishedAt, "d 'de' LLLL 'ás' HH:mm'h'", {
         locale: ptBR,
@@ -28,31 +28,29 @@ export function Poste({ author, content, publishedAt}){
         setNewComents("")
     }
     function handlerNewComents(event){
+        event.target.setCustomValidity("")
         setNewComents(event.target.value)
     }
-
+    function handlerInvalid(event){
+        event.target.setCustomValidity("Campo Obrigatório")
+    }
     function deletarComents(deletList){
         const deletarComentario = coment.filter(coment => {
             return coment !== deletList;
         });
         setComent(deletarComentario);
     }
-
-
+    const isDisableValue = newComents.length === 0
   return(
      <article className={style.poste}>
           <header>
               <div className={style.author}>
-
                   <Avatar src={avatarUrl} />
-
                   <div className={style.authorInfo}>
                       <strong>{nome}</strong>
                       <span>{cargo}</span>
                   </div>
-
               </div>
-
               <time title={publishedAtFormatted} dateTime={publishedAt.toISOString()}>
                    {publishedAtDateFormattedToNow}
                 </time>
@@ -70,26 +68,28 @@ export function Poste({ author, content, publishedAt}){
 
         <form onSubmit={handlerComent} className={style.comentForm}>
             <strong>Deixe seu cometário</strong>
-
                     <textarea 
                         name='comentar'
                         value={newComents}
                         onChange={handlerNewComents}
-                        placeholder='comentar....' />
+                        placeholder='comentar....' 
+                        onInvalid={handlerInvalid}
+                        required
+                        />
              <footer>
-                <button type='submit'> Publicar</button>
+                <button type='submit' disabled={isDisableValue}> Publicar</button>
            </footer>
         </form>
 
         <div className={style.comentList}>
-         { coment.map(coment => {
-            return (
-                    <Coment
-                         key={coment} 
-                         cometar={coment} 
-                         ondeletarComents={deletarComents}
-                         />)
-         })}
+                { coment.map(coment => {
+                    return (
+                        <Coment
+                            key={coment} 
+                            cometar={coment} 
+                            ondeletarComents={deletarComents}
+                        />)
+                })}
         </div>
         
      </article>
