@@ -3,7 +3,7 @@
   border-radius: 8px;
   padding: 2.5rem;
 }
-.poste + .poste {
+.poste, .poste{
   margin-top: 2rem;
 }
 .content {

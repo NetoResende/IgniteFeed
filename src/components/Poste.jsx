@@ -12,7 +12,7 @@ export function Poste({ author, content, publishedAt}){
     const { avatarUrl, nome, cargo} = author;
     const [ coment, setComent ] = useState([]);
     const [ newComents, setNewComents ] = useState('')
-    console.log(newComents);
+   
 
     const publishedAtFormatted = format(publishedAt, "d 'de' LLLL 'ás' HH:mm'h'", {
         locale: ptBR,
@@ -80,7 +80,6 @@ export function Poste({ author, content, publishedAt}){
                 <button type='submit' disabled={isDisableValue}> Publicar</button>
            </footer>
         </form>
-
         <div className={style.comentList}>
                 { coment.map(coment => {
                     return (
@@ -91,7 +90,6 @@ export function Poste({ author, content, publishedAt}){
                         />)
                 })}
         </div>
-        
      </article>
     
   )
