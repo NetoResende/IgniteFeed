@@ -10,6 +10,7 @@ import style from './Poste.module.css'
 
 export function Poste({ author, content, publishedAt}){
     const { avatarUrl, nome, cargo} = author;
+    
     const [ coment, setComent ] = useState([]);
     const [ newComents, setNewComents ] = useState('')
    
@@ -23,7 +24,6 @@ export function Poste({ author, content, publishedAt}){
     })
     function handlerComent(event){
         event.preventDefault()
-        const newComents = event.target.comentar.value
         setComent([...coment, newComents])
         setNewComents("")
     }
